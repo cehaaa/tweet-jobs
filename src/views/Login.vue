@@ -15,7 +15,7 @@
                         type="email"
                         placeholder="Email"
                         class="form-control"
-                        v-model="login.email"
+                        v-model="data.email"
                     />
                 </div>
                 <div>
@@ -23,7 +23,7 @@
                         type="password"
                         placeholder="password"
                         class="form-control"
-                        v-model="login.password"
+                        v-model="data.password"
                     />
                 </div>
             </div>
@@ -34,11 +34,13 @@
                         >Remember</label
                     >
                 </div>
-                <router-link to="/login">Forgot Password ?</router-link>
+                <router-link to="/data">Forgot Password ?</router-link>
             </div>
             <div class="flex space-x-5">
                 <button class="btn-outline-primary w-1/2">Register</button>
-                <button class="btn-primary w-1/2">Login</button>
+                <button class="btn-primary w-1/2" @click="signIn()">
+                    Login
+                </button>
             </div>
         </div>
     </div>
@@ -48,11 +50,31 @@
 export default {
     data() {
         return {
-            login: {
+            data: {
                 email: "",
                 password: "",
             },
         };
+    },
+    methods: {
+        signIn() {
+            const fd = new FormData();
+
+            for (let key in this.data) {
+                fd.append(key, this.data[key]);
+            }
+
+            fetch(this.$apiURL + "/login", {
+                method: "post",
+                body: fd,
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data.status === "Login success") {
+                        this.$router.push("/tweet/home");
+                    }
+                });
+        },
     },
 };
 </script>
