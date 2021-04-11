@@ -37,8 +37,18 @@
                 <router-link to="/data">Forgot Password ?</router-link>
             </div>
             <div class="flex space-x-5">
-                <button class="btn-outline-primary w-1/2">Register</button>
-                <button class="btn-primary w-1/2" @click="signIn()">
+                <button
+                    class="btn-outline-primary w-1/2"
+                    :disabled="isDisabled"
+                    @click="signUp()"
+                >
+                    Register
+                </button>
+                <button
+                    class="btn-primary w-1/2"
+                    :disabled="isDisabled"
+                    @click="signIn()"
+                >
                     Login
                 </button>
             </div>
@@ -50,6 +60,7 @@
 export default {
     data() {
         return {
+            isDisabled: false,
             data: {
                 email: "",
                 password: "",
@@ -58,6 +69,8 @@ export default {
     },
     methods: {
         signIn() {
+            this.isDisabled = true;
+
             const fd = new FormData();
 
             for (let key in this.data) {
@@ -71,6 +84,26 @@ export default {
                 .then((res) => res.json())
                 .then((data) => {
                     if (data.status === "Login success") {
+                        this.$router.push("/tweet/home");
+                    }
+                });
+        },
+
+        signUp() {
+            this.isDisabled = true;
+            const fd = new FormData();
+
+            for (let key in this.data) {
+                fd.append(key, this.data[key]);
+            }
+
+            fetch(this.$apiURL + "/user", {
+                method: "post",
+                body: fd,
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data.status === "1 Data recorded") {
                         this.$router.push("/tweet/home");
                     }
                 });
