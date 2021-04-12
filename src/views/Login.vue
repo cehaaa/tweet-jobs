@@ -96,6 +96,11 @@ export default {
                     .then((res) => res.json())
                     .then((data) => {
                         if (data.status === "Login success") {
+                            localStorage.setItem(
+                                "TweetJobs_UserId",
+                                data.user_id
+                            );
+
                             this.$router.push("/tweet/home");
                         } else if (
                             data.status === "Your password or email is invalid!"
