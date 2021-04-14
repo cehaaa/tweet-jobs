@@ -26,7 +26,7 @@
                     >
                 </div>
 
-                <router-link to="tweet/profile">
+                <router-link to="/tweet/profile">
                     <div
                         class="hover:bg-gray-200 duration-200 cursor-pointer group px-10 py-5"
                     >
