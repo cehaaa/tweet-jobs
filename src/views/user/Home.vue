@@ -8,7 +8,7 @@
             <div class="w-10"></div>
             <textarea
                 name="post"
-                class="w-full text-gray-500 focus:outline-none"
+                class="w-full text-gray-500 focus:outline-none resize-none"
                 cols="30"
                 rows="3"
                 placeholder="Apa yang sedang terjadi"
@@ -30,11 +30,11 @@
                     </div>
                     <div>
                         <select
-                            class="focus:outline-none"
                             v-model="newPost.status"
+                            class="focus:outline-none"
                         >
-                            <option value="tweet">Tweet</option>
-                            <option value="job">Job</option>
+                            <option value="tweet">Tweet post</option>
+                            <option value="job">Job post</option>
                         </select>
                     </div>
                 </div>
@@ -65,7 +65,7 @@ export default {
             post: "",
             newPost: {
                 desc: "",
-                status: "",
+                status: "tweet",
                 img: "",
             },
         };
@@ -95,7 +95,14 @@ export default {
                 fd.append(key, this.newPost[key]);
             }
 
-            console.log(this.newPost);
+            fetch(this.$apiURL + "/post", {
+                method: "post",
+                body: fd,
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log(data);
+                });
         },
     },
 };
