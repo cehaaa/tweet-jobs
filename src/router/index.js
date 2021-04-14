@@ -23,6 +23,10 @@ const routes = [
                 path: "home",
                 component: () => import("@/views/user/Home"),
             },
+            {
+                path: "profile",
+                component: () => import("@/views/user/Profile"),
+            },
         ],
     },
 ];
