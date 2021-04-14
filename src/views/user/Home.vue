@@ -33,8 +33,8 @@
                             class="focus:outline-none"
                             v-model="newPost.status"
                         >
-                            <option value="Tweet">Tweet</option>
-                            <option value="Jobs">Jobs</option>
+                            <option value="tweet">Tweet</option>
+                            <option value="job">Job</option>
                         </select>
                     </div>
                 </div>
