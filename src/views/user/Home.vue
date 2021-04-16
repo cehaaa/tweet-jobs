@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="p-3 border-b flex justify-between w-full">
-            <div class="font-bold text-lg">Home</div>
+            <div class="font-bold text-2xl text-blue-500">Home</div>
         </div>
 
         <div class="p-3 w-full border-b">
@@ -66,7 +66,7 @@ export default {
             newPost: {
                 desc: "",
                 status: "tweet",
-                img: "",
+                picture: "",
             },
         };
     },
@@ -85,15 +85,19 @@ export default {
         },
 
         fileHandler(e) {
-            this.newPost.img = e.target.files[0];
+            this.newPost.picture = e.target.files[0];
         },
 
         addPost() {
             const fd = new FormData();
 
             for (let key in this.newPost) {
+                // if (this.newPost[key] != "") {
                 fd.append(key, this.newPost[key]);
+                // }
             }
+
+            fd.append("user_id", this.$userId);
 
             fetch(this.$apiURL + "/post", {
                 method: "post",
@@ -101,7 +105,15 @@ export default {
             })
                 .then((res) => res.json())
                 .then((data) => {
-                    console.log(data);
+                    if (data.status == "post uploaded") {
+                        this.getPost();
+                    }
+
+                    for (let key in this.newPost) {
+                        this.newPost[key] = "";
+                    }
+
+                    this.newPost.status = "tweet";
                 });
         },
     },
