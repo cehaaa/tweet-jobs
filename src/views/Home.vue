@@ -2,11 +2,14 @@
     <div
         class="w-full h-screen flex justify-center items-center bg-blue-500 select-none"
     >
-        <div class="text-white text-center">
+        <div class="text-white text-center group cursor-pointer">
             <div
-                class="text-9xl font-bold hover:text-gray-900 cursor-pointer duration-200"
+                class="text-9xl font-bold group-hover:text-gray-900  duration-200"
             >
-                Mars
+                Tweet Jobs
+            </div>
+            <div class="mt-2 group-hover:text-gray-900 duration-200">
+                Find your dream jobs now!
             </div>
 
             <router-link class="underline mt-5 block" to="/login"
