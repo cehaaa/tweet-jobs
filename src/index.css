@@ -9,6 +9,10 @@
     @apply rounded bg-blue-500 p-2 text-white flex items-center justify-center duration-200 ease-in-out hover:bg-blue-700 focus:outline-none;
 }
 
+.btn-warning {
+    @apply rounded bg-yellow-500 p-2 text-gray-900 flex items-center justify-center duration-200 ease-in-out hover:bg-yellow-700 focus:outline-none;
+}
+
 .btn-outline-primary {
     @apply rounded border border-blue-500 p-2 text-blue-500 flex items-center justify-center duration-200 ease-in-out hover:border-blue-700 hover:text-blue-700;
 }
