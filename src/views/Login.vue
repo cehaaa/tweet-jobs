@@ -123,13 +123,20 @@ export default {
                     fd.append(key, this.data[key]);
                 }
 
-                fetch(this.$apiURL + "/user", {
+                fetch(this.$apiURL + "/register", {
                     method: "post",
                     body: fd,
                 })
                     .then((res) => res.json())
                     .then((data) => {
+                        console.log(data);
+
                         if (data.status === "1 Data recorded") {
+                            localStorage.setItem(
+                                "TweetJobs_UserId",
+                                data.user_id
+                            );
+
                             this.$router.push("/tweet/home");
                         }
                     });
