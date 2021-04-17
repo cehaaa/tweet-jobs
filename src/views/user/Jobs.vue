@@ -24,7 +24,7 @@ export default {
     },
     methods: {
         getPost() {
-            fetch(this.$apiURL + "/jobs", {
+            fetch(this.$apiURL + "/post/job", {
                 method: "get",
             })
                 .then((res) => res.json())
