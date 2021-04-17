@@ -41,6 +41,7 @@
                 <div>
                     <button
                         class="btn-primary w-32 rounded-full"
+                        :class="{ 'cursor-wait': isPost }"
                         @click="addPost()"
                     >
                         Post
@@ -68,6 +69,7 @@ export default {
                 status: "tweet",
                 picture: "",
             },
+            isPost: false,
         };
     },
     mounted() {
@@ -75,7 +77,7 @@ export default {
     },
     methods: {
         getPost() {
-            fetch(this.$apiURL + "/post", {
+            fetch(this.$apiURL + "/post/all", {
                 method: "get",
             })
                 .then((res) => res.json())
@@ -89,12 +91,12 @@ export default {
         },
 
         addPost() {
+            this.isPost = !this.isPost;
+
             const fd = new FormData();
 
             for (let key in this.newPost) {
-                // if (this.newPost[key] != "") {
                 fd.append(key, this.newPost[key]);
-                // }
             }
 
             fd.append("user_id", this.$userId);
@@ -107,6 +109,7 @@ export default {
                 .then((data) => {
                     if (data.status == "post uploaded") {
                         this.getPost();
+                        this.isPost = !this.isPost;
                     }
 
                     for (let key in this.newPost) {
