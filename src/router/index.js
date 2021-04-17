@@ -24,6 +24,14 @@ const routes = [
                 component: () => import("@/views/user/Home"),
             },
             {
+                path: "settings",
+                component: () => import("@/views/user/Settings"),
+            },
+            {
+                path: "jobs",
+                component: () => import("@/views/user/Jobs"),
+            },
+            {
                 path: "profile",
                 component: () => import("@/views/user/Profile"),
             },
