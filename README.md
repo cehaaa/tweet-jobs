@@ -1,5 +1,7 @@
 # Tweet Jobs
 
+Here is the [API repository](https://github.com/veeloo/tweet-jobs-api)
+
 ## Project setup
 
 ```
