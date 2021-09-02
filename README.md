@@ -5,7 +5,6 @@ Here is the [API repository](https://github.com/veeloo/tweet-jobs-api)
 ## Preview
 
 ![Tweet Jobs App](./preview/app.png)
-![Tweet Jobs App](./preview/home.png)
 
 ## Project setup
 
